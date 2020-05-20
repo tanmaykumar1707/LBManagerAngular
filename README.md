@@ -29,6 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
-This web app is deployed on Firbase : https://www.lb-manager.web.app
+This web app is deployed on Firbase : https://lb-manager.web.app/
 
 firebase-tools
