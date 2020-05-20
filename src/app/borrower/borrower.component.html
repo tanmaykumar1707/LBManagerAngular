@@ -1,0 +1,134 @@
+
+<div class="container" *ngIf="renderBorrower$ | async as renderBorrower ">
+    <div class="row">
+        <div class="col-12 text-center">
+       
+            <borrower-card [renderBorrower]='renderBorrower' ></borrower-card> 
+        </div>
+    </div>
+
+    <!-- <div class="row"   >
+        <div class="col-12" >
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Amount Taken</th>
+                    <th>Purpose</th>
+                    <th>Amount Returned</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let lis of renderBorrower.lb">
+                      
+                        <td> {{lis.name}}</td>
+                        <td>{{lis.date |date}}</td>
+                        <td>{{lis.amount | currency:"INR":"symbol" }} </td>
+                        <td>{{lis.purpose}}</td>
+                        <td>  {{lis.am_return | currency:"INR":"symbol" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
+
+    
+    <div class="row">
+        <div class="col-12">
+           
+            <ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1">
+                <!-- id="custom-panel-1" -->
+                <ngb-panel class="bg-white" *ngFor="let lis of renderBorrower.lb" >
+                    <ng-template ngbPanelHeader let-opened="opened" >
+                        <div class="d-flex align-items-center justify-content-between shadow-lg  bg-white rounded" >
+                            <table class="table table-responsive">
+                                
+                                    <tbody>
+                                        <tr>
+                                            <td> {{lis.name}}</td>
+                                            <td>{{lis.date |date}}</td>
+                                            <td>{{lis.amount | currency:"INR":"symbol" }} </td>
+                                            <td>{{lis.purpose}}</td>
+                                            <td>  {{lis.am_return | currency:"INR":"symbol" }}</td>
+                                            <td>
+
+
+                                                <button  ngbPanelToggle class="btn p-0">
+                                                    <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>
+                                                      </svg>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="text-danger" (click)="delete(lis.key)" >X</button>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>  
+                            <!-- {{ opened ? 'Collapse' : 'Return Details' }} -->
+                        </div>
+                    </ng-template>
+                    
+                    <ng-template ngbPanelContent>
+                        <!-- <button class="btn btn-primary" [(ngModel)]="returnview"  > Add Return Amount </button> -->
+                                <div *ngIf="lis.return_da.length > 0; else no_return_amount">
+                                          
+                                            <table class="table">
+                                                <thead>
+                                                    <th>Date </th>
+                                                    <th>Return Amount</th>
+                                                    <th>Remarks</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let ret of lis.return_da">
+                                                        <td>{{ret.date}}</td>
+                                                        <td>{{ret.amount_return  | currency:"INR":"symbol" }}</td>
+                                                        <td>{{ret.remarks}}</td>
+                                                        <td>  <button class="text-danger" (click)="deleteReturn(lis.key,ret.key)" >X</button> </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+
+                                </div>
+                                <ng-template #no_return_amount>
+                                    <h5 class="text-danger text-center"> {{lis.name}} has not Returned any  money till Now. </h5>
+                                </ng-template >
+        
+                              
+                                    <div class="container">
+                                        <form class="form-inline" #addR="ngForm" (ngSubmit)="addReturn(addR.value,lis.key)" >
+       
+                                            <div class="form-group">
+                                                <label for="" class="">Date</label>
+                                                <input type="text" name="date" ngModel  #password="ngModel" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="" class="">Return Amount</label>
+                                                <input type="number" name="amount_return" ngModel  #email="ngModel" class="form-control">
+                                    
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="" class="">Purpose</label>
+                                                <input type="text" name="remarks" ngModel  #password="ngModel" class="form-control">
+                                            </div>
+                                    
+                                            <button class="btn btn-primary">Add Return</button>
+                                        </form>
+                                    </div>
+                                   
+                               
+                    </ng-template> 
+              
+                </ngb-panel>
+                
+            </ngb-accordion>
+        </div>
+    </div>
+
+
+
+</div>
+
+ 

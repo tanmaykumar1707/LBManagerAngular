@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="select-group">
+        <label for="type">Choose Given/Taken</label>
+        <select name="" [(ngModel)]="type" class="form-control" id="">
+            <option value=""> Choose </option>
+            <option value="Lender"> Money Given </option>
+            <option value="Borrower"> Money Taken </option>
+        </select>
+    </div>
+    {{type}}
+    <form #addNewLB="ngForm" (ngSubmit)="addNew(addNewLB.value)" >
+       
+        <div class="form-group">
+            <label for="" class="">Date</label>
+            <input type="text" name="date" ngModel  #password="ngModel" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="" class="">Name</label>
+            <input type="text" name="name" ngModel  #email="ngModel" class="form-control">
+
+        </div>
+        <div class="form-group">
+            <label for="" class="">Amount</label>
+            <input type="number" name="amount" ngModel  #email="ngModel" class="form-control">
+
+        </div>
+        <div class="form-group">
+            <label for="" class="">Purpose</label>
+            <input type="text" name="purpose" ngModel  #password="ngModel" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">Add </button>
+    </form>
+</div>

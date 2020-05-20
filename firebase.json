@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": "dist/Lbmanager-angular",
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

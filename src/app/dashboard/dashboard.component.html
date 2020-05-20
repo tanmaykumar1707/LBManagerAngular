@@ -1,0 +1,27 @@
+
+<div class="container" *ngIf="renderLender && renderBorrower">
+    <!-- {{t.totalAmount}} -->
+    <div class="row">
+
+        <div class="col-6">
+
+            <h2 class="text-primary">Total Money Given : {{ renderLender.totalAmount | currency:'INR':"symbol" }} </h2>
+            <h2 class="text-primary">Return Money  : {{ renderLender.totalReturn | currency:'INR':"symbol"}} </h2>
+
+        </div>
+        <div class="col-6">
+                <borrower-card [renderBorrower]='renderBorrower' ></borrower-card>
+        </div>
+    </div>
+
+    <!-- <div *ngFor="let b of renderLender.lb">
+          {{b.return_da | json}}
+             
+    </div>
+     -->
+</div>
+
+
+<!-- {{total | json }} -->
+
+
